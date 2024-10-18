@@ -36,4 +36,12 @@ Pin description of OV7670 camera module
   
   
 
+# Pixel Binning
+
+Pixel binning is the method of combine multiple pixels into single pixel and store it in the device. For instance, in modern day smartphones we can capture image in 108MP or 48MP and perform 9:1 or 4:1 pixel binning to store the image into 12MP resolution.
+
+For this project, OV7670 captures the image in 640x480 resolution but due to the space constraints of Basys 3 board we need to perform 4:1 pixel binning and store the final image in the block RAM with the resolution of 320x240. 
+
+Source: https://www.androidauthority.com/what-is-pixel-binning-966179/
+
 </details>
