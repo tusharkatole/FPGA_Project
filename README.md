@@ -3,6 +3,14 @@
 <details>
  <summary> Interface a camera with FPGA, capture and store the image in Block ram, and display the image on the VGA monitor </summary>
 
+# Project Plan
+
+This project can be split into three parts boardly
+
+* **Interfacing the OV7670 camera with the Basys 3 FPGA Board**
+* **Reading and Storing the image captured by the camera sensor and storing it in the block ram**
+* **Interfacing the FPGA board with VGA controller to display the stored image in the monitor**
+
  # Protocol Used
  
  ## SCCB
