@@ -13,7 +13,7 @@ This project can be split into three parts boardly
 
  # Protocol Used
  
- ## SCCB
+ ## SCCB (Serial Camera Control Bus)
 
 According to spec, SCCB supports only upto 100Khz (not more).
 
@@ -34,7 +34,10 @@ Pin description of OV7670 camera module
 
   ![Screenshot from 2024-10-18 10-32-53](https://github.com/user-attachments/assets/e9ec985a-b8ac-4707-a023-fcc6792bd3a5)
   
-  
+Connection of BaSys 3 FPGA board and OV7670 Camera Module
+
+![image](https://github.com/user-attachments/assets/868e2dfa-bb6f-4a2e-9c4f-8ce43d965b90)
+
 
 # Pixel Binning
 
