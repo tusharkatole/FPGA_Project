@@ -1,16 +1,16 @@
 `timescale 1ns/1ns
-// Integrate setup rom, sccb communication module
+
 module camera_interface_top
 #(
     parameter INPUT_CLK_FREQ = 25000000
 )
 (
-input wire clk,  // system freq (INPUT_CLK_FREQ parameter)
+input wire clk,
 input wire reset,
-input wire start, // input from upper module, start ov7670 setup
-output wire sioc_to_ov7670,  // wire to ov7670
-output wire siod_to_ov7670,  // wire to 0v7670
-output wire done,    // finish signal to upper module
+input wire start,
+output wire sioc_to_ov7670,
+output wire siod_to_ov7670,
+output wire done,
 output wire ov7670_pwdn,
 output wire ov7670_reset
 );
@@ -24,17 +24,12 @@ wire SCCB_ready_signal;
 wire sioc;
 wire siod;
 
-// output to OV760 SCCB control singals
 assign sioc_to_ov7670 = sioc;
 assign siod_to_ov7670 = siod;
 assign ov7670_pwdn = 1'b0;
 assign ov7670_reset = 1'b1;
 
-
-// setup module:
-// get setup sub address and values from ROM
-// assign SCCB communicaiton moudle to work with SCCB interface
-camera_interface #(.INPUT_CLK_FREQ(INPUT_CLK_FREQ)) ov767_setup(
+camera_interface_setup #(.INPUT_CLK_FREQ(INPUT_CLK_FREQ)) camera_interface_setup(
     .clk(clk),
     .reset(reset),
     .SCCB_ready_signal(SCCB_ready_signal),
@@ -47,19 +42,15 @@ camera_interface #(.INPUT_CLK_FREQ(INPUT_CLK_FREQ)) ov767_setup(
     .sccb_start_sign(sccb_start_sign)
 );
 
-// save all function setting sub address and value data
 camera_interface_rom camera_interface_rom(
     .clk(clk),
     .rom_select(rom_select),
     .rom_out(rom_out)
 );
 
-// input set sub address and value data
-// work with SCCB to communicaiton OV7670 camera
-// setup all HW parameters
 sccb_protocol #(
     .INPUT_CLK_FREQ(INPUT_CLK_FREQ)
-) sccb_communication(
+) sccb_protocol(
     .clk(clk),
     .reset(reset),
     .start(sccb_start_sign),
